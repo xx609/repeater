@@ -1,7 +1,19 @@
-FROM python:3.9-slim-bullseye
+FROM python:3.9-slim-bookworm
+
 WORKDIR /repeater
-RUN apt update && apt install -y build-essential libffi-dev libssl-dev libssl-dev python-dev
-ADD requirements.txt ./
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        libffi-dev \
+        libssl-dev \
+        python3-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt ./
+
 RUN pip install -r requirements.txt
-ADD . .
+
+COPY . .
+
 ENTRYPOINT ["python", "repeater.py"]
