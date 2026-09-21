@@ -12,7 +12,7 @@ TELEGRAM_APITOKEN=YOUR_BOT_TOKEN
 3. Start the bot:
 
 ```bash
-docker compose up --build
+docker compose up
 ```
 
 ## Behavior
